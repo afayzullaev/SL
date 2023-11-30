@@ -1,0 +1,17 @@
+{% extends 'app/main.html' %}
+{% block content %}
+<div class="col-md-7 mx-auto">
+    <div class="card card-body">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.media }} 
+            {{ form.as_p }} 
+
+            <input class="btn brn-sm btn-primary" type = "submit" name="Saqlaw">
+        
+        
+        </form>
+    </div>
+</div>
+
+{% endblock %}

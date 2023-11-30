@@ -1,0 +1,56 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+  
+
+<div class="row">
+    <div class="col-md-7 mx-auto">
+        <h5>Postlar</h5>
+        <hr>
+        <div class="card card-body">
+            <table class="tabel table-sm">
+                    <tr>
+                        <th>#</th>
+                        <th>Post ati</th>
+                        <th>Jaylasqan qala/rayon</th>
+                        <th>Janiw waqti</th>
+                        <th>O'shiw waqti</th>
+                        <th></th>
+                    </tr>
+                {% for i in devices %}
+                    <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.location}}</td>
+                        <td>
+                            {{i.is_on_time|time:"H:i"}}
+                            <a class="btn brn-sm btn-primary" href="{% url 'update_device_on_time' i.id %}">
+                                <span class="fa fa-pencil"></span> 
+                            </a>
+                        </td>
+                        <td>
+                            {{i.is_off_time|time:"H:i"}}
+                            <a class="btn brn-sm btn-primary" href="{% url 'update_device_off_time' i.id %}">
+                                <span class="fa fa-pencil"></span> 
+                            </a>
+                        </td>
+                        <td>
+                            {% if i.state == True %}
+                            <a class="btn brn-sm btn-success" href="{% url 'update_device_state' i.id %}">
+                                <span class="fa fa-power-off"></span> ON
+                            </a>
+                            {% endif %}
+                            {% if i.state == False %}
+                            <a class="btn brn-sm btn-danger" href="{% url 'update_device_state' i.id %}">
+                                <span class="fa fa-power-off"></span> OFF
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
